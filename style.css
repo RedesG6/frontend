@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav {
+    padding: 10px 10px;
+    width: 98.5%;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: linear-gradient(#495272, #606088);
+}
+
+nav span {
+    color: #C5C5C5;
+}
+
+nav * {
+    margin-left: 30px;   
+}
+
+nav a {
+    color: #C5C5C5;
+    text-decoration-style: none;
+    text-decoration-style: -moz-none;
+}
+
+nav a:hover {
+    color: white;
+}
