@@ -1,0 +1,33 @@
+[
+        {
+            "temperatura": "26.6",
+            "luminosidade": "1221",
+            "dataLog": "2017-11-18T17:55:00"
+        },
+        {
+            "temperatura": "40",
+            "luminosidade": "111",
+            "dataLog": "2017-11-18T17:56:00"
+        },
+        {
+            "temperatura": "20",
+            "luminosidade": "100",
+            "dataLog": "2017-11-18T17:57:00"
+        },
+        {
+            "temperatura": "30",
+            "luminosidade": "1221",
+            "dataLog": "2017-11-18T17:58:00"
+        },
+        {
+            "temperatura": "28",
+            "luminosidade": "1221",
+            "dataLog": "2017-11-18T17:59:00"
+        },
+        {
+            "temperatura": "26",
+            "luminosidade": "1221",
+            "dataLog": "2017-11-18T18:00:00"
+        }
+]
+    

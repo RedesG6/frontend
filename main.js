@@ -48,7 +48,9 @@ function getData(onGet) {
         realtime: true,
         quantidade: document.getElementById("quantity").value
     };
+    console.log(JSON.stringify(body));
     request.send(JSON.stringify(body));
+    request.setRequestHeader('Content-Type', 'application/json');
     request.onload = function() {
         data = JSON.parse(request.responseText);
         onGet(data);
