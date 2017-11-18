@@ -1,18 +1,29 @@
+///////////// CONFIGURACAO ///////////////////
+var intervaloAtualizacao = 60000;
+var nomeEndpoint = "data";
+
+
+
 var ctx = document.getElementById("grafico").getContext('2d');
 var grafico = new Chart(ctx, {
     type: 'line'
 });
+var selecionado = "luminosidade";
+
+setInterval(updateGrafico, intervaloAtualizacao);
+function updateGrafico() {
+    selecionado === "luminosidade" ? chartLum() : chartTemp();
+}
 
 function chartLum() {
     getData(function(data) {
+        selecionado = "luminosidade";
         var listaLabels = data.map(function(item) {
             return item.dataLog.substr(11, 5);
         });
         var listaDados = data.map(function(item) {
             return item.luminosidade;
         });
-        console.log(listaLabels);
-        console.log(listaDados);
         grafico.data = {
             labels: listaLabels,
             datasets: [
@@ -32,7 +43,7 @@ function chartLum() {
 
 function getData(onGet) {
     var request = new XMLHttpRequest();
-    request.open("post", "data");
+    request.open("post", nomeEndpoint);
     var body = {
         realtime: true,
         quantidade: document.getElementById("quantity").value
@@ -46,6 +57,7 @@ function getData(onGet) {
 
 function chartTemp() {
     getData(function(data) {
+        selecionado = "temperatura";
         var listaLabels = data.map(function(item) {
             return item.dataLog.substr(11, 5);
         });
