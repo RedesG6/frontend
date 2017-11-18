@@ -4,35 +4,67 @@ var grafico = new Chart(ctx, {
 });
 
 function chartLum() {
-    grafico.data = {
-        labels: ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"],
-        datasets: [
-            {
-                label: "Luminosidade",
-                backgroundColor: "rgba(75,192,192,0.4)",
-                borderColor: "rgba(75,192,192,1)",
-                fill: false,
-                data: [900, 800, 840, 600, 1000, 900, 850],
-                lineTension: 0
-            }
-        ]
+    getData(function(data) {
+        var listaLabels = data.map(function(item) {
+            return item.dataLog.substr(11, 5);
+        });
+        var listaDados = data.map(function(item) {
+            return item.luminosidade;
+        });
+        console.log(listaLabels);
+        console.log(listaDados);
+        grafico.data = {
+            labels: listaLabels,
+            datasets: [
+                {
+                    label: "Luminosidade",
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    fill: false,
+                    data: listaDados,
+                    lineTension: 0
+                }
+            ]
+        };
+        grafico.update();
+    });
+}
+
+function getData(onGet) {
+    var request = new XMLHttpRequest();
+    request.open("post", "data");
+    var body = {
+        realtime: true,
+        quantidade: document.getElementById("quantity").value
     };
-    grafico.update();
+    request.send(JSON.stringify(body));
+    request.onload = function() {
+        data = JSON.parse(request.responseText);
+        onGet(data);
+    }
 }
 
 function chartTemp() {
-    grafico.data = {
-        labels: ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"],
-        datasets: [
-            {
-                label: "Temperatura",
-                backgroundColor: "rgba(200, 30, 30,0.9)",
-                borderColor: "rgba(200, 30, 30,0.9)",
-                fill: false,
-                data: [26.5, 27, 28.5, 27.1, 26, 27.8, 30],
-                lineTension: 0
-            }
-        ]
-    };
-    grafico.update();
+    getData(function(data) {
+        var listaLabels = data.map(function(item) {
+            return item.dataLog.substr(11, 5);
+        });
+        var listaDados = data.map(function(item) {
+            return item.temperatura;
+        });
+        grafico.data = {
+            labels: listaLabels,
+            datasets: [
+                {
+                    label: "Temperatura",
+                    backgroundColor: "rgba(200, 30, 30,0.9)",
+                    borderColor: "rgba(200, 30, 30,0.9)",
+                    fill: false,
+                    data: listaDados,
+                    lineTension: 0
+                }
+            ]
+        };
+        grafico.update();
+    });
 }
